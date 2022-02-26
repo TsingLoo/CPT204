@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="library">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/library/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/stdlib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/xchart-3.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/algs4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/stdlib-package.jar!/" />
+      <root url="file://$PROJECT_DIR$/library" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/library" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/library" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/library" recursive="false" type="SOURCES" />
+  </library>
+</component>
