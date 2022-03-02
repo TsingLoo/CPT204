@@ -16,7 +16,7 @@ public class SameFirstLetter {
     public static Map<String, String> sameFirstLetter(List<String> list) {
         
 		
-		
+		return null;
     }
 
 }

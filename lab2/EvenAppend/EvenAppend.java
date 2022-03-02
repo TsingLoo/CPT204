@@ -1,6 +1,4 @@
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public class EvenAppend {
 
@@ -11,9 +9,25 @@ public class EvenAppend {
      * @return a concatenation of even appearing words.
      */
     public static String evenAppend(List<String> list) {
-        
-		
-		
+
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        String returnStr = "";
+
+        for(String str : list) {
+            if (map.containsKey(str)) {
+                returnStr += str;
+                map.remove(str);
+            } else {
+                map.put(str,1);
+            }
+        }
+        return returnStr;
+    }
+
+    public static void main(String[] args)
+    {
+        double prob = 1/5;
+
     }
 
 }
