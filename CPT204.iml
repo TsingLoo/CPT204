@@ -6,6 +6,13 @@
       <sourceFolder url="file://$MODULE_DIR$/lab1/ConcatContain" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab1/Hailstone" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab1/LeapYear" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab2/CountRuns" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab2/EvenAppend" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab2/MatchSwap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab2/MaxStretch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab2/Partitionable" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab2/SameFirstLetter" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture2/NumWords" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
