@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class CountRuns {
@@ -21,37 +22,25 @@ public class CountRuns {
                 if(!run)
                 {
                     run = true;
-
+                    runs += 1;
                 }
             }else
             {
-                if
-            }
-        }
-
-
-        for(int num : list)
-        {
-            if(temp == num)
-            {
-                if(!run)
+                if(run)
                 {
-                    run = true;
-                    runs +=1;
+                    run = false;
                 }
             }
-
-            temp = num;
+            temp = list.get(i);
         }
-
-        for(int i=0; i<list.size();i++)
-        {
-
-        }
-
-
-		
-		
         return runs;
     }
+
+    public static void main(String[] args)
+    {
+        List<Integer> list = Arrays.asList(1, 1, 2, 3, 4, 5, 5);
+        System.out.println(countRuns(list));
+    }
+
+
 }
