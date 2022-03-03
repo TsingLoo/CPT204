@@ -10,7 +10,46 @@ public class CountRuns {
      */
     public static int countRuns(List<Integer> list) {
         int runs = 0;
-        
+        if(list.size() == 0 || list.size() == 1) {return 0;};
+        int temp = list.get(0);
+        boolean run = false;
+
+        for(int i = 1; i < list.size(); i++)
+        {
+            if(temp == list.get(i))
+            {
+                if(!run)
+                {
+                    run = true;
+
+                }
+            }else
+            {
+                if
+            }
+        }
+
+
+        for(int num : list)
+        {
+            if(temp == num)
+            {
+                if(!run)
+                {
+                    run = true;
+                    runs +=1;
+                }
+            }
+
+            temp = num;
+        }
+
+        for(int i=0; i<list.size();i++)
+        {
+
+        }
+
+
 		
 		
         return runs;
