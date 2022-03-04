@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,33 @@ public class SameFirstLetter {
      * @return a map with first letter and comma-separated-words pair.
      */
     public static Map<String, String> sameFirstLetter(List<String> list) {
-        
+
+        Map<String, String> strMap = new HashMap<String, String>();
+        String strValue = "";
+
+        for(String str : list)
+        {
+            String ch = Character.toString(str.charAt(0));
+            if(strMap.containsKey(ch))
+            {
+                strValue  = strMap.get(ch) + ","+ str;
+            }else
+            {
+                strValue = str;
+            }
+            strMap.put(ch, strValue);
+        }
 		
-		return null;
+		return strMap;
+    }
+
+    public static void main(String[] args)
+    {
+        List<String> list = Arrays.asList("Alice", "Bob", "apple", "banana","bob");
+        Map<String, String> map = sameFirstLetter(list);
+        for (String key : map.keySet()) {
+            System.out.println(key + ": " + map.get(key));
+        }
     }
 
 }
