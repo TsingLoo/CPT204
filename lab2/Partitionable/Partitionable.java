@@ -11,37 +11,34 @@ public class Partitionable {
      * @return true iff list is partitionable.
      */
     public static boolean isPartitionable(List<Integer> list) {
-        int leftHandSum = 0;
-        int rightHandSum = 0;
-        int leftHandPointer = 0;
-        int rightHandPointer = list.size()-1;
-
-        if(list.size() == 1)
+        int sum = 0;
+        for (int num : list)
+        {
+            sum += num;
+        }
+        if (sum == 0)
+        {
+            return true;
+        }else if(list.size() ==1)
         {
             return false;
         }
 
-        for (int i = 0; i < list.size()+1; i++)
+        for(int i = 0; i < list.size()-1; i++)
         {
-
-
-
-            if(leftHandSum == rightHandSum)
+            int left = 0;
+            int right= 0;
+            for(int j = 0; j <= i; j++)
             {
-                if(rightHandPointer + 1 == leftHandPointer){ return true;}
-                else {
-                    leftHandSum += list.get(leftHandPointer);
-                    leftHandPointer += 1;
-                }
-            }else if(leftHandSum - rightHandSum > 0)
-            {
-                rightHandSum += list.get(rightHandPointer);
-                rightHandPointer -= 1;
+                left += list.get(j);
             }
-            else if(rightHandSum - leftHandSum > 0)
+            for(int k = i+1; k< list.size();k++)
             {
-                leftHandSum += list.get(leftHandPointer);
-                leftHandPointer +=1;
+                right += list.get(k);
+            }
+            if(left == right)
+            {
+                return true;
             }
         }
         return false;
@@ -49,7 +46,7 @@ public class Partitionable {
 
     public static void main(String[] args)
     {
-        List<Integer> list = Arrays.asList(123);
+        List<Integer> list = Arrays.asList(1);
         System.out.println(isPartitionable(list));
     }
 
