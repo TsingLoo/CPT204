@@ -13,6 +13,17 @@
       <sourceFolder url="file://$MODULE_DIR$/lab2/Partitionable" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab2/SameFirstLetter" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture2/NumWords" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab3/CheckSubstring" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab3/CountBabaMama" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab3/DelDuplicate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab3/EqualSum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab3/ExtractVowel" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab3/OddAndTen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab3/SkipSum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture3/NumSubs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture3/ReverseStr" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture3/SubsetSum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture3/SumDigits" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
