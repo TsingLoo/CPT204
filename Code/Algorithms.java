@@ -9,11 +9,15 @@ public class Algorithms {
         for(int val:number) {
             System.out.print(val+" ");
         }
-
+            quickSort(number);
         System.out.println("\n排序后：");
         for(int val:number) {
             System.out.print(val +" ");
         }
+        System.out.println();
+        System.out.println(binarySearch(number,13));
+
+
     }
 
 
@@ -56,7 +60,7 @@ public class Algorithms {
     }
 
 
-    private int binarySearch(int[] nums, int target)
+    private static int binarySearch(int[] nums, int target)
     {
         int left = 0;
         int right = nums.length-1;
@@ -64,15 +68,18 @@ public class Algorithms {
         while(left < right)
         {
             int mid = (left + right)/2;
-            if(target == nums[mid-1])
+            if(target == nums[mid])
             {
                 return mid;
-            }else
+            }else if(nums[mid] > target)
             {
-
+                left = mid + 1;
+            }else if(nums[mid] < target)
+            {
+                right = mid - 1;
             }
         }
 
-        return 0;
+        return -1;
     }
 }
