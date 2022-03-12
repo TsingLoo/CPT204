@@ -1,7 +1,8 @@
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class QuickSortBinarySearch {
+
+public class QuickSort {
     public static void main(String[] args)
     {
         int[] number={13,15,24,99,14,11,1,2,3};
@@ -15,7 +16,7 @@ public class QuickSortBinarySearch {
             System.out.print(val +" ");
         }
         System.out.println();
-        System.out.println(binarySearch(number,13));
+        System.out.println(BinarySearch.binarySearch(number,14));
 
 
     }
@@ -60,26 +61,5 @@ public class QuickSortBinarySearch {
     }
 
 
-    private static int binarySearch(int[] nums, int target)
-    {
-        int left = 0;
-        int right = nums.length-1;
 
-        while(left <= right)
-        {
-            int mid = (left + right)/2;
-            if(target == nums[mid])
-            {
-                return mid;
-            }else if(nums[mid] > target)
-            {
-                left = mid + 1;
-            }else if(nums[mid] < target)
-            {
-                right = mid - 1;
-            }
-        }
-
-        return -1;
-    }
 }
