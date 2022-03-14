@@ -13,18 +13,21 @@ public class EqualSum {
      */
     public static boolean equalSum(List<Integer> list) {
         // call your recursive helper method
-        return false;	
+        return equalSumHelper(list,0,0,0);
     }
 
-    private static boolean equalSumHelper() { // add any parameters
+    private static boolean equalSumHelper(List<Integer> list, int start, int sum1, int sum2) { // add any parameters
         // base case
-        
+        if(list.size() == start)
+            return sum1 == sum2;
 		
 		
         // recursive step
         
 		
-		return false;
+		return equalSumHelper(list,start+1, sum1+list.get(start),sum2)
+                ||
+                equalSumHelper(list,start+1,sum1,sum2+list.get(start));
     }
 
 }
