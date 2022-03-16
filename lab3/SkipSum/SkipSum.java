@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class SkipSum {
@@ -7,8 +8,9 @@ public class SkipSum {
      * in the list must not be both in the subset.
      * For example, skipSum([2, 5, 10], 12) → true,
      * and skipSum([2, 5, 10], 7) → false.
+     *
      * @param list is the input list.
-     * @param sum is the target sum.
+     * @param sum  is the target sum.
      * @return true iff there is a subset of non-adjacent integers
      * in the list that adds to sum.
      */
@@ -18,13 +20,34 @@ public class SkipSum {
     }
 
     private static boolean skipSumHelper(List<Integer> list, int start, int sum) {
-        // base case
-        
-		
-		
-        // recursive step
-        
-		
-		return false;
+        if(sum == 0)
+            return true;
+        if(start >= list.size())
+            return false;
+
+        if(list.get(start) >sum)
+        {
+            return skipSumHelper(list,start+1,sum);
+        }
+
+
+        return skipSumHelper(list,start+2,sum-list.get(start))
+                || skipSumHelper(list,start+1,sum);
     }
+
+
+
+
+
+
+    public static void main(String[] args)
+    {
+        List<Integer> list = Arrays.asList(0);
+        int sum = 4;
+        System.out.println(skipSum(list, sum));
+
+    }
+
 }
+
+
