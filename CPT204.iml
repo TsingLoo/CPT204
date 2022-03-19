@@ -25,6 +25,8 @@
       <sourceFolder url="file://$MODULE_DIR$/lecture3/SubsetSum" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture3/SumDigits" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab4/MyList" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture4" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
