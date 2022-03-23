@@ -33,13 +33,14 @@ public class MyList {
     public static void recSquareMutList(MyList list) {
 
         // base case
-		
-		
-		
-        // recursive step
-		
-		
-		
+		if (list == null)
+		{
+		    return ;
+        }else {
+            list.value = list.value * list.value;
+            list = list.next;
+            recSquareMutList(list);
+		}
     }
 
 
