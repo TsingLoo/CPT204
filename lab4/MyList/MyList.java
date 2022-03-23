@@ -52,10 +52,26 @@ public class MyList {
      * @return another MyList with all of input MyList's element squared.
      */
     public static MyList iterSquareList(MyList list) {
+		if (list == null)
+		{
+		    return null;
+        }
+
+		MyList res = new MyList(list.value*list.value, null);
+		MyList ptr = res;
+		list = list.next;
 		
-		
-		
-		return null;
+
+
+		while(list != null)
+		{
+		    ptr.next = new MyList(list.value*list.value,null);
+		    list = list.next;
+		    ptr = ptr.next;
+        }
+
+
+        return  res;
     }
 
 
