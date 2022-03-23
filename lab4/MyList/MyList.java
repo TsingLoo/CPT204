@@ -85,13 +85,17 @@ public class MyList {
     public static MyList recSquareList(MyList list) {
 
         // base case
-		
-		
+		if(list == null)
+		{
+		    return null;
+        }
+
+		return new MyList(list.value*list.value,recSquareList(list.next));
+
+
 		
         // recursive step
-		
-		
-		return null;
+
     }
 
 
