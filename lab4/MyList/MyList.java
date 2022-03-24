@@ -109,10 +109,36 @@ public class MyList {
      * elements of listB.
      */
     public static MyList iterCatMutList(MyList listA, MyList listB) {
-        
-		
-		
-		return null;
+        MyList head = listA;
+        if(listA == null&&listB == null)
+        {
+            return  null;
+        }else if(listA == null)
+        {
+           head =  listB;
+           listA = head;
+           return listA;
+        }else if(listB == null)
+        {
+            return  head;
+        }
+
+
+
+        MyList listAiterator = listA;
+        while (listAiterator.next != null) {
+            listAiterator = listAiterator.next;
+        }
+        MyList temp = listAiterator;
+
+        while (listB != null) {
+            temp.next = new MyList(listB.value, null);
+            listB = listB.next;
+            temp = temp.next;
+
+        }
+
+        return listA;
     }
 
 
@@ -127,14 +153,27 @@ public class MyList {
      */
     public static MyList recCatMutList(MyList listA, MyList listB) {
 
-        // base case
-		
-		
-		
+
+        if(listA==null){
+            return listB;
+        }
+        else if(listA.next==null){
+            MyList res=listA;
+            res.next=listB;
+            return listA;
+        }
+
         // recursive step
-		
-		
-		return null;
+        else{
+            MyList res=listA;
+            if(listA.next.next!=null){
+                res=new MyList(listA.value, recCatMutList(listA.next,listB));
+            }else {
+
+                res.next = new MyList(listA.next.value, recCatMutList(listA.next.next, listB));
+            }
+            return listA;
+        }
     }
 
 
@@ -148,10 +187,39 @@ public class MyList {
      * elements of listB.
      */
     public static MyList iterCatList(MyList listA, MyList listB) {
-		
-		
-		
-		return null;
+
+
+        if(listA == null&&listB == null)
+        {
+            return  null;
+        }else if(listA == null)
+        {
+            return listB;
+        }else if(listB == null)
+        {
+            return  listA;
+        }
+
+        if(listB==null){
+            return listA;
+        }else {
+            MyList temp = new MyList(0, null);
+            while (listA != null) {
+                temp.value = listA.value;
+                temp = new MyList(0, temp);
+                listA = listA.next;
+            }
+            temp = temp.next;
+
+
+            while (temp != null) {
+                listB = new MyList(temp.value, listB);
+                temp = temp.next;
+            }
+
+
+            return listB;
+        }
     }
 
 
@@ -166,14 +234,23 @@ public class MyList {
      */
     public static MyList recCatList(MyList listA, MyList listB) {
 
-        // base case
-		
-		
-		
+        if(listA == null&&listB == null)
+        {
+            return  null;
+        }else if(listA == null)
+        {
+            return listB;
+        }else if(listB == null)
+        {
+            return  listA;
+        }
+
+
         // recursive step
-		
-		
-		return null;
+        else{
+            MyList result=new MyList(listA.value, recCatList(listA.next,listB));
+            return result;
+        }
     }
 
 

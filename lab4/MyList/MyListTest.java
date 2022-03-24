@@ -56,11 +56,21 @@ public class MyListTest {
 
     @Test
     public void testIterativeCatenateMutateMyList() {
-        MyList list1 = MyList.ofEntries(1, 2, 3);
-        MyList list2 = MyList.ofEntries(4, 5, 6);
-        MyList exp = MyList.ofEntries(1, 2, 3, 4, 5, 6);
+
+
+//        MyList list1 = MyList.ofEntries(1, 2, 3);
+//        MyList list2 = MyList.ofEntries(4, 5, 6);
+//        MyList exp = MyList.ofEntries(1, 2, 3, 4, 5, 6);
+//        assertEquals(exp, MyList.iterCatMutList(list1, list2));
+//        assertEquals(MyList.ofEntries(1, 2, 3, 4, 5, 6), list1);
+
+        MyList list1 = MyList.ofEntries();
+        MyList list2 = MyList.ofEntries(5);
+        MyList exp = MyList.ofEntries(5);
         assertEquals(exp, MyList.iterCatMutList(list1, list2));
-        assertEquals(MyList.ofEntries(1, 2, 3, 4, 5, 6), list1);
+
+        //problems occured.
+        assertEquals(MyList.ofEntries(5), list1);
     }
 
     @Test
