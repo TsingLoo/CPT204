@@ -29,6 +29,9 @@
       <sourceFolder url="file://$MODULE_DIR$/lecture4" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab5/LLDeque" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture5" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab6/LLDeque" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab6/Vehicle" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture6" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

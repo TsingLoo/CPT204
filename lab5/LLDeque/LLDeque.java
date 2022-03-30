@@ -42,9 +42,10 @@ public class LLDeque<T> {
      * Creates an empty deque.
      */
     public LLDeque() {
-		
-		
-		
+		sentinel = new Node(null,null,null);
+		sentinel.prev = sentinel;
+		sentinel.next = sentinel;
+		size = 0;
     }
 
 
@@ -55,9 +56,10 @@ public class LLDeque<T> {
      * @param item is a type T object added to the deque.
      */
     public void addFirst(T item) {
-		
-		
-		
+		Node node = new Node(sentinel, item ,sentinel.next);
+		sentinel.next.prev = node;
+		sentinel.next = node;
+		size += 1;
     }
 
 
@@ -68,9 +70,13 @@ public class LLDeque<T> {
      * separated by a space, ended with a new line.
      */
     public void printDeque() {
-		
-		
-		
+		Node p = sentinel.next;
+		while( p != sentinel)
+		{
+		    System.out.print(p.item + " ");
+		    p = p.next;
+        }
+		    System.out.println();
     }
 
 
@@ -84,9 +90,18 @@ public class LLDeque<T> {
      * @return the ith item of the deque, null if it does not exist.
      */
     public T iterGet(int index) {
-		
-		
-		return null;
+		if(size == 0 || index < 0  || index >=size)
+        {
+            return null;
+        }
+
+		Node p = sentinel.next;
+		while(index>0)
+		{
+		    p = p.next;
+		    index -=1;
+        }
+		return p.item;
     }
 
 
@@ -97,9 +112,10 @@ public class LLDeque<T> {
      * @param item is a type T object added to the deque.
      */
     public void addLast(T item) {
-		
-		
-		
+        Node node = new Node(sentinel.prev, item ,sentinel);
+        sentinel.prev.next = node;
+        sentinel.prev = node;
+        size += 1;
     }
 
 
@@ -111,11 +127,20 @@ public class LLDeque<T> {
      * @return the first item of the deque, null if it does not exist.
      */
     public T delFirst() {
-		
-		
-		return null;
-    }
+        if (isEmpty()) {
+            return null;
+        }
 
+        Node oldFirst = sentinel.next;
+        T item = oldFirst.item;
+
+        sentinel.next = oldFirst.next;
+        sentinel.next.prev = sentinel;
+
+        oldFirst = null;
+        size--;
+        return item;
+    }
 
     // EXERCISE 5.3 DELETE BACK
 
@@ -125,9 +150,19 @@ public class LLDeque<T> {
      * @return the last item of the deque, null if it does not exist.
      */
     public T delLast() {
-		
-		
-		return null;
+        if (isEmpty()) {
+            return null;
+        }
+
+        Node oldLast = sentinel.prev;
+        T item    = oldLast.item;
+
+        sentinel.prev      = oldLast.prev;
+        sentinel.prev.next = sentinel;
+
+        oldLast = null;
+        size--;
+        return item;
     }
 
 
@@ -141,10 +176,26 @@ public class LLDeque<T> {
      * @return the ith item of the deque, null if it does not exist.
      */
     public T recGet(int index) {
-		
-		
-		return null;
-    }   
+		if(isEmpty()||index < 0 || index >= size)
+		{
+		    return null;
+        }else
+        {
+           return recHelper(index, sentinel.next);
+        }
+    }
+
+    private T recHelper(int index, Node node)
+    {
+        if(index == 0)
+        {
+            return node.item;
+        }
+        else
+        {
+            return recHelper(index-1,node.next);
+        }
+    }
 	
 
     public static void main(String[] args) {
