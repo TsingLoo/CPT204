@@ -1,3 +1,5 @@
+import static sun.security.util.Debug.args;
+
 public class LLDeque<T> {
 
     private class Node {
@@ -76,7 +78,15 @@ public class LLDeque<T> {
         }
     }
 
+    public void addLegalFirst(T item1, T item2) {
+        try
+        {
+            addFirst(item1);
 
+        }catch(IllegalArgumentException iae) {
+            addFirst(item2);
+        }
+    }
 
 
     // LAB EXERCISE 5.3 PRINT ITEMS
