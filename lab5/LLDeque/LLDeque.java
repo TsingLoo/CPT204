@@ -64,11 +64,19 @@ public class LLDeque<T> {
      * @param item is a type T object added to the deque.
      */
     public void addFirst(T item) {
-		Node node = new Node(sentinel, item ,sentinel.next);
-		sentinel.next.prev = node;
-		sentinel.next = node;
-		size += 1;
+		if(item == null)
+		{
+		    throw new IllegalArgumentException();
+        }else
+        {
+            Node node = new Node(sentinel, item ,sentinel.next);
+            sentinel.next.prev = node;
+            sentinel.next = node;
+            size += 1;
+        }
     }
+
+
 
 
     // LAB EXERCISE 5.3 PRINT ITEMS
