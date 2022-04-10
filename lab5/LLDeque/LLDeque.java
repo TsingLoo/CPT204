@@ -48,6 +48,14 @@ public class LLDeque<T> {
 		size = 0;
     }
 
+    public LLDeque(LLDeque<T> other) {
+        this();
+        for(int i =0 ;i < other.size(); i++)
+        {
+            this.addLast(other.iterGet(i));
+        }
+    }
+
 
     // LAB EXERCISE 5.2 ADD TO FRONT
 
@@ -196,13 +204,23 @@ public class LLDeque<T> {
             return recHelper(index-1,node.next);
         }
     }
-	
+
+
 
     public static void main(String[] args) {
         LLDeque<String> deque = new LLDeque<>();
-        deque.addFirst("b");
         deque.addFirst("a");
-        deque.printDeque();
+
+        LLDeque<String> copyDeque = new LLDeque<>(deque);
+        deque.addFirst("x");
+
+        copyDeque.addFirst("y");
+
+        System.out.println("This step goes well");
+        System.out.println(deque.iterGet(0));
+        System.out.println(deque.iterGet(1));
+        System.out.println(copyDeque.iterGet(0));
+        System.out.println(copyDeque.iterGet(1));
     }
 
 }
