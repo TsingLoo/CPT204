@@ -12,14 +12,21 @@ class ListNode {
 
 public class printArrayFromTailtoHead {
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-        ArrayList<Integer> answerList = new ArrayList<>();
-        while(listNode != null)
-        {
-            answerList.add(0,listNode.val);
-            listNode= listNode.next;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        ListNode cur = listNode;
+        ListNode HeadNode = null;
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = HeadNode;
+            HeadNode = cur;
+            cur = temp;
         }
-
-        return answerList;
+        while (HeadNode != null)
+        {
+            list.add(HeadNode.val);
+            HeadNode = HeadNode.next;
+        }
+        return list;
     }
 
     public static void main(String[] args)
