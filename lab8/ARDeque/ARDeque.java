@@ -165,9 +165,16 @@ public class ARDeque<T> {
      * @return the first item of the deque, null if it does not exist.
      */
     public T delFirst() {
-		
-		
-		return null;
+        if (size == 0) {
+            return null;
+        }
+        nextFirst = plusOne(nextFirst);
+        size = size -1;
+        T delitem = items[nextFirst];
+        if (size <= items.length / 4) {
+            resize(items.length / 2);
+        }
+        return delitem;
     }
 
 
@@ -179,9 +186,16 @@ public class ARDeque<T> {
      * @return the last item of the deque, null if it does not exist.
      */
     public T delLast() {
-		
-		
-		return null;
+        if (size == 0) {
+            return null;
+        }
+        nextLast = minusOne(nextLast);
+        size = size -1;
+        T delitem = items[nextLast];
+        if (size <= items.length / 4) {
+            resize(items.length / 2);
+        }
+        return delitem;
     }
 
 
@@ -192,7 +206,13 @@ public class ARDeque<T> {
      * @param other is another ARDeque<T> object.
      */
     public ARDeque(ARDeque<T> other) {
-		
+        this.nextLast=other.nextLast;
+        this.nextFirst=other.nextFirst;
+        this.size=other.size;
+        items=(T[])new Object[other.items.length];
+        for(int i=0;i<items.length;i++){
+            items[i]=other.items[i];
+        }
 		
 		
 	}
