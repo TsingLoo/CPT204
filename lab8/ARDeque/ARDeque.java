@@ -49,7 +49,8 @@ public class ARDeque<T> {
     {
         return  (index-1 + items.length) % items.length;
     }
-	
+
+
 	
 	 /* Resizes the underlying array to the target capacity. */
 	@SuppressWarnings("unchecked")
