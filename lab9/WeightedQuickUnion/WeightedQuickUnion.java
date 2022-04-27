@@ -50,7 +50,12 @@ public class WeightedQuickUnion {
      * @param N the number of elements
      */
     public WeightedQuickUnion(int N) {
-        
+        parent = new int[N];
+
+        for(int i=0 ; i<N; i++)
+        {
+            parent[i] = -1;
+        }
 		
 		
     }
@@ -62,10 +67,11 @@ public class WeightedQuickUnion {
      * Validates that p is a valid element/index.
      * @throws IllegalArgumentException if p is not a valid index.
      */
-    public void validate(int p) {
-        
-		
-		
+    public void validate(int p){
+        if( p <0 || p>= parent.length)
+        {
+            throw new IllegalArgumentException();
+        }
     }
 
 
