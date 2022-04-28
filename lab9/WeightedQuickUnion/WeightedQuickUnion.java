@@ -83,9 +83,12 @@ public class WeightedQuickUnion {
      * @return the size of the set containing p
      */
     public int sizeOf(int p) {
-        
-		
-		return 0;
+        if(parent[p]<0){
+            int result = -parent[p];
+            return result;
+        }else{
+            return sizeOf(parent[p]);
+        }
     }
 	
 	
@@ -100,9 +103,17 @@ public class WeightedQuickUnion {
      * @throws IllegalArgumentException if p or q is not a valid index.
      */
     public boolean isSameGroup(int p, int q) {
-        
-		
-		return false;
+        validate(p);
+        validate(q);
+        if(parent[p]>=0)
+        {
+            return isSameGroup(parent[p],q);
+        }else if(parent[q]>=0)
+        {
+            return isSameGroup(p,parent[q]);
+        }else{
+            return p==q;
+        }
     }
 
 
@@ -116,7 +127,26 @@ public class WeightedQuickUnion {
      * @throws IllegalArgumentException if p or q is not a valid index.
      */
     public void union(int p, int q) {
-        
+        validate(p);
+        validate(q);
+        if(isSameGroup(p,q))
+        {
+            return;
+        }
+        if(parent[p]>=0)
+        {
+            union(parent[p],q);
+        }else if(parent[q]>=0)
+        {
+            union(p,parent[q]);
+        }else if (parent[p]<parent[q])
+        {
+            parent[p]=parent[q]+parent[p];
+            parent[q]=p;
+        }else{
+            parent[q]=parent[q]+parent[p];
+            parent[p]=q;
+        }
 		
 		
     }
