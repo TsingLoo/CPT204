@@ -1,9 +1,15 @@
-public class ARDeque<T> {
+
+import java.util.ArrayDeque;
+
+import java.util.Iterator;
+
+
+public class ARDeque<T> implements Deque<T>,Iterable<T>{
     private T[] items;
     private int size;
     private int nextFirst;
     private int nextLast;
-	
+
 
     /**
      * @return the size of the array used in the deque.
@@ -35,41 +41,58 @@ public class ARDeque<T> {
 
 
     /*
-    ******************* HELPER METHODS START *******************
-	***** Include your helper method(s) in EACH Submission *****
-	*********************** that uses it ***********************
-    */
-
-    private  int plusOne(int index)
-    {
-        return  (index + 1) % items.length;
+     ******************* HELPER METHODS START *******************
+     ***** Include your helper method(s) in EACH Submission *****
+     *********************** that uses it ***********************
+     */
+    private int plusOne(int index){
+        return (index+1)% items.length;
     }
 
-    private int minusOne(int index)
-    {
-        return  (index-1 + items.length) % items.length;
+    private int minusOne(int index){
+        return (index-1+items.length)%items.length;
     }
 
 
-	
-	 /* Resizes the underlying array to the target capacity. */
-	@SuppressWarnings("unchecked")
+    /* Resizes the underlying array to the target capacity. */
+    @SuppressWarnings("unchecked")
     private void resize(int capacity) {
-		T[] newArray = (T[]) new Object[capacity];
-		int curr = plusOne(nextFirst);
-		for(int i=0; i<size;i++)
-		{
-		    newArray[i] = items[curr];
-		    curr = plusOne(curr);
+        T [] a=(T[])new Object[capacity];
+        int curr=plusOne(nextFirst);
+        for (int i = 0; i<size;i++){
+            a[i]=items[curr];
+            curr=plusOne(curr);
         }
-		items = newArray;
-		nextFirst = capacity -1;
-		nextLast = size;
+        items=a;
+        nextFirst=capacity-1;
+        nextLast=plusOne(size-1);
     }
 
     /*
-    ******************** HELPER METHODS END ********************
-    */
+     ******************** HELPER METHODS END ********************
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new ARDequeIterator();
+
+
+
+    }
+
+    private class ARDequeIterator implements Iterator<T> {
+        private int index;
+        public ARDequeIterator(){index=0;}
+        public boolean hasNext(){return index<size;}
+        public T next(){
+            T nextItem=get(index);
+            index++;
+            return nextItem;
+        }
+
+
+
+
+    }
 
 
     // LAB EXERCISE 8.1 EMPTY CONSTRUCTOR
@@ -77,12 +100,12 @@ public class ARDeque<T> {
     /**
      * Creates an empty deque.
      */
-	@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public ARDeque() {
-		items = (T[]) new Object[4];
-		size = 0;
-		nextFirst =1;
-		nextLast = 2;
+        size=0;
+        items=(T[])new Object[4] ;
+        nextLast=1;
+        nextFirst=0;
     }
 
 
@@ -92,14 +115,15 @@ public class ARDeque<T> {
      * Adds an item of type T to the back of the deque.
      * @param item is a type T object to be added.
      */
+    @Override
     public void addLast(T item) {
-		if(size == items.length)
-		{
-		    resize(2*size);
+
+        if (size==items.length){
+            resize(size*2);
         }
-		items[nextLast] = item;
-		size += 1;
-		nextLast = plusOne(nextLast);
+        items[nextLast]=item;
+        size++;
+        nextLast=plusOne(nextLast);
     }
 
 
@@ -110,14 +134,18 @@ public class ARDeque<T> {
      * separated by a space, ended with a new line.
      */
     public void printDeque() {
-        int i = plusOne(nextFirst);
-		for(int j= 0; j< size; j++)
-		{
-            System.out.print(items[i] + " ");
-            i = plusOne(i);
-		}
-		System.out.println();
+        int j=plusOne(nextFirst);
+        for(int i=0;i<size;i++){
+            System.out.print(items[j]+" ");
+            j=plusOne(j);
+
+
+        }
+        System.out.println();
+
+
     }
+
 
     // LAB EXERCISE 8.4 GET ITEM
 
@@ -129,14 +157,12 @@ public class ARDeque<T> {
      * @throws IndexOutOfBoundsException if no item exists at the given index.
      */
     public T get(int index) {
-        if(size == 0 || index<0 || index >= size)
-        {
-            throw new IndexOutOfBoundsException("Index " + index + " is not valid");
-        }
-        index = (plusOne(nextFirst) + index ) % items.length;
-        ;
+        int realindex;
+        if(isEmpty()||index<0||index>=size) {
+            throw new IndexOutOfBoundsException("Index "+index+" is not valid");
 
-        return items[index];
+        }
+        return items[plusOne(index+nextFirst)];
     }
 
 
@@ -147,15 +173,15 @@ public class ARDeque<T> {
      * @param item is a type T object to be added.
      */
     public void addFirst(T item) {
-        if(size == items.length)
-        {
-            resize(2*size);
+        if(size==items.length){
+            resize(size*2);
         }
-        items[nextFirst] = item;
-        size += 1;
-        nextFirst = minusOne(nextFirst);
-    }
+        items[nextFirst]=item;
+        nextFirst=minusOne(nextFirst);
+        size++;
 
+
+    }
 
 
     // EXERCISE 8.2 DELETE FRONT
@@ -170,13 +196,16 @@ public class ARDeque<T> {
             return null;
         }
         nextFirst = plusOne(nextFirst);
-        size = size -1;
-        T delitem = items[nextFirst];
+        size--;
+        T realitem = items[nextFirst];
         if (size <= items.length / 4) {
+
+
             resize(items.length / 2);
         }
-        return delitem;
+        return realitem;
     }
+
 
 
     // EXERCISE 8.3 DELETE BACK
@@ -187,16 +216,16 @@ public class ARDeque<T> {
      * @return the last item of the deque, null if it does not exist.
      */
     public T delLast() {
-        if (size == 0) {
+        if(size==0){
             return null;
         }
-        nextLast = minusOne(nextLast);
-        size = size -1;
-        T delitem = items[nextLast];
-        if (size <= items.length / 4) {
-            resize(items.length / 2);
+        nextLast=minusOne(nextLast);
+        size--;
+        T realitem=items[nextLast];
+        if(size<=items.length/4){
+            resize(items.length/2);
         }
-        return delitem;
+        return realitem;
     }
 
 
@@ -206,17 +235,16 @@ public class ARDeque<T> {
      * Creates a (deep) copy of another Deque object.
      * @param other is another ARDeque<T> object.
      */
+    @SuppressWarnings("unchecked")
     public ARDeque(ARDeque<T> other) {
         this.nextLast=other.nextLast;
         this.nextFirst=other.nextFirst;
         this.size=other.size;
-        items=(T[])new Object[other.items.length];
+        items=items=(T[])new Object[other.items.length];
         for(int i=0;i<items.length;i++){
             items[i]=other.items[i];
         }
-		
-		
-	}
+    }
 
 
 }

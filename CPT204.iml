@@ -36,6 +36,9 @@
       <sourceFolder url="file://$MODULE_DIR$/lecture8" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab9/ARDequeIterator" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab9/WeightedQuickUnion" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab10/ARDeque" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab10/ARSet" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab10/RSLList" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
