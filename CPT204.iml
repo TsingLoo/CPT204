@@ -39,6 +39,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lab10/ARDeque" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab10/ARSet" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab10/RSLList" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lecture11_and_lab11/Dog" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture11_and_lab11/Duration" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
