@@ -32,7 +32,6 @@ public class MirrorTree {
         {
             return;
         }
-
         TreeNode temp = new TreeNode(-1);
         temp = Head.left;
         Head.left = Head.right;
