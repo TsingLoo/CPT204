@@ -38,7 +38,6 @@ public class MirrorTree {
         Head.left = Head.right;
         Head.right = temp;
 
-
         Recur(Head.left);
 
         //Recur(Head.left);
