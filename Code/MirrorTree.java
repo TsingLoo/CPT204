@@ -28,7 +28,7 @@ public class MirrorTree {
 
     public void Recur(TreeNode Head)
     {
-        if((Head.left == null && Head.right == null)||Head == null)
+        if(Head == null||(Head.left == null && Head.right == null))
         {
             return;
         }
@@ -38,17 +38,14 @@ public class MirrorTree {
         Head.left = Head.right;
         Head.right = temp;
 
-        if(Head.left!=null)
-        {
-            Recur(Head.left);
-        }
+
+        Recur(Head.left);
+
         //Recur(Head.left);
-        if(Head.right!=null)
-        {
-            Recur(Head.right);
-        }
+
+        Recur(Head.right);
+
         //Recur(Head.right);
     }
-
 
 }
