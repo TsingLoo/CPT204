@@ -1,3 +1,5 @@
+//https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionPathCompressionUF.java.html
+
 public class UnionFind {
 
     private int[] parent;
@@ -47,9 +49,10 @@ public class UnionFind {
      * @param N the number of elements
      */
     public UnionFind(int N) {
-
-
-
+        this.parent = new int[N];
+        for (int i = 0; i < N; i++) {
+            parent[i] = i;
+        }
     }
 
 
@@ -61,9 +64,10 @@ public class UnionFind {
      * @throws IllegalArgumentException if p is not a valid index.
      */
     public void validate(int p) {
-
-
-
+        int n = parent.length;
+        if (p < 0 || p >= n) {
+            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n - 1));
+        }
     }
 
 
@@ -75,7 +79,11 @@ public class UnionFind {
      * @return the size of the set containing p
      */
     public int sizeOf(int p) {
-
+        int count = 0;
+        for(int i=0;i<this.parent.length;i++)
+        {
+            if
+        }
 
 
         return 0;

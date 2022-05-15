@@ -28,6 +28,7 @@ public class MirrorTree {
 
     public void Recur(TreeNode Head)
     {
+        //不知道为啥，Head == null 必须写在最前面判断
         if(Head == null||(Head.left == null && Head.right == null))
         {
             return;
