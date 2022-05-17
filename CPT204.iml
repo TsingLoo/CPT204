@@ -34,7 +34,6 @@
       <sourceFolder url="file://$MODULE_DIR$/lab6/LLDeque" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab8/ARDeque" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture8" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lab9/ARDequeIterator" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab9/WeightedQuickUnion" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab10/ARDeque" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab10/ARSet" isTestSource="false" />
@@ -44,6 +43,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lecture11_and_lab11/Triple" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture11_and_lab11/ARSet" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CW3/PartA" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab12/LectureQuiz" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
