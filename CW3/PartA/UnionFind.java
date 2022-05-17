@@ -82,7 +82,7 @@ public class UnionFind {
         int count = 0;
         for(int i=0;i<this.parent.length;i++)
         {
-            if
+
         }
 
 
@@ -100,9 +100,17 @@ public class UnionFind {
      */
     public int find(int p) {
 
+            validate(p);
+            int root = p;
+            while (root != parent[root])
+                root = parent[root];
+            while (p != root) {
+                int newp = parent[p];
+                parent[p] = root;
+                p = newp;
+            }
+            return root;
 
-
-        return 0;
     }
 
 
