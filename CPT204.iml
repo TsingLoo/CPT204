@@ -43,6 +43,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lecture11_and_lab11/Triple" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lecture11_and_lab11/ARSet" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CW3/PartA" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab12/HAMap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab12/HASet" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab12/LectureQuiz" isTestSource="false" />
     </content>
