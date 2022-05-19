@@ -7,6 +7,12 @@ import static org.junit.Assert.*;
 public class HASetTest {
 
     @Test
+    public void testGet_1()
+    {
+
+    }
+
+    @Test
     public void testSet_1() {
         HASet<String> set = new HASet<>();
         set.add("a");

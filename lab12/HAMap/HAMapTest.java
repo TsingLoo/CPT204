@@ -13,12 +13,16 @@ public class HAMapTest {
         assertEquals(1, map.size());
         map.put("b", 2);
         map.put("c", 3);
-        map.remove("a", 1);
+        map.remove("a", 3);
+        System.out.println(map.size());
+        System.out.println(map.remove("a",1));
+
         for (String key : map) {
             System.out.println("(" + key + ", " + map.get(key) + ")");
         }
         map.clear();
         assertEquals(0, map.size());
+        map.remove("a",3);
         assertFalse(map.containsKey("b"));
         assertFalse(map.containsKey("c"));
     }

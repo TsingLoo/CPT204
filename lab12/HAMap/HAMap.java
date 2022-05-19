@@ -63,7 +63,32 @@ public class HAMap<K, V> implements Iterable<K> {
 
     
 	// INCLUDE your helper methods in EACH of your submissions that use them
-	
+    private  int reduce(K key, int capacity)
+    {
+        return  Math.floorMod(key.hashCode(),capacity);
+    }
+
+    private  void resize(int newCapacity)
+    {
+        ArrayList<ArrayList<Entry>> newBuckets = new ArrayList<>();
+
+        for(int i=0;i<newCapacity;i++)
+        {
+            newBuckets.add(new ArrayList<>());
+        }
+
+        int index;
+        for (K key: this)
+        {
+            index = reduce(key,newCapacity);
+            newBuckets.get(index).add(new Entry(key,get(key)));
+        }
+
+        buckets = newBuckets;
+        numBuckets = newCapacity;
+
+
+    }
 	
 	
 	
@@ -105,9 +130,16 @@ public class HAMap<K, V> implements Iterable<K> {
      * Removes all of the entries from this map.
      */
     public void clear() {
-		
-		
-		
+		buckets = new ArrayList<>();
+        keySet = new HashSet<>();
+
+        numEntries = 0;
+        //this.loadFactor = loadFactor;
+
+        for(int i=0;i<numBuckets;i++)
+        {
+            buckets.add(new ArrayList<>());
+        }
     }
 
 
@@ -118,9 +150,7 @@ public class HAMap<K, V> implements Iterable<K> {
      * @return true iff this map contains an entry with the specified key
      */
     public boolean containsKey(K key) {
-		
-		
-		return false;
+		return keySet.contains(key);
     }
 
     /**
@@ -128,9 +158,7 @@ public class HAMap<K, V> implements Iterable<K> {
      */
     @Override
     public Iterator<K> iterator() {
-		
-		
-		return null;
+		return keySet.iterator();
     }
 
 
@@ -142,9 +170,21 @@ public class HAMap<K, V> implements Iterable<K> {
      *         null if this map contains no entries of the key
      */
     public V get(K key) {
-		
-		
-		return null;
+        if(!containsKey(key))
+        {
+            return  null;
+        }
+
+        int idx = reduce(key,numBuckets);
+        ArrayList<Entry> zipList = buckets.get(idx);
+        for(Entry e:zipList)
+        {
+            if(e.key.equals(key))
+            {
+                return  e.value;
+            }
+        }
+        return null;
     }
 
 
@@ -158,9 +198,33 @@ public class HAMap<K, V> implements Iterable<K> {
      * @param value of the entry to be added
      */
     public void put(K key, V value) {
-		
-		
-		
+        if(!containsKey(key))
+        {
+            numEntries ++;
+            keySet.add(key);
+            if(((double)keySet.size()/numBuckets)>loadFactor)
+            {
+                resize(2*numBuckets);
+            }
+
+            int idx = reduce(key,numBuckets);
+            ArrayList<Entry> zipList = buckets.get(idx);
+
+            //int idx = reduce(key,numBuckets);
+            //ArrayList<Entry> zipList = buckets.get(idx);
+            zipList.add(new Entry(key,value));
+        }else
+        {
+            int idx = reduce(key,numBuckets);
+            ArrayList<Entry> zipList = buckets.get(idx);
+            for(Entry e:zipList)
+            {
+                if(e.key.equals(key))
+                {
+                    e.value = value;
+                }
+            }
+        }
     }
 	
 	
@@ -175,9 +239,34 @@ public class HAMap<K, V> implements Iterable<K> {
      *         null otherwise
      */
     public V remove(K key, V value) {
-		
-		
-		return null;
+        Entry toRemove = null;
+        int index = reduce(key, numBuckets);
+        for (Entry entry : buckets.get(index)) {
+            if (entry.key.equals(key) && (value == null || entry.value.equals(value))) {
+                toRemove = entry;
+            }
+        }
+        if (toRemove != null) {
+            buckets.get(index).remove(toRemove);
+            keySet.remove(key);
+            numEntries--;
+            return toRemove.value;
+        }
+        return null;
+    }
+
+    public V getV(K key)
+    {
+        int index;
+        if (containsKey(key)) {
+            index = reduce(key, numBuckets);
+            for (Entry entry : buckets.get(index)) {
+                if (entry.key.equals(key)) {
+                    return entry.value;
+                }
+            }
+        }
+        return null;
     }
 
 }
