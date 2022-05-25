@@ -32,7 +32,25 @@ public class UnionFind {
     /*
      ***** HELPER METHODS START *****
      */
+    private void compressHelper(int p,int root){
+        if(parent[p]<0)
+            return;
+        else
+        {
+            compressHelper(parent(p),root);
+            parent[p]=root;
+        }
+    }
 
+    private int findHelper(int p ){
+        if(parent[p]<0)
+        {
+            return p;
+        }else
+        {
+            return findHelper(parent(p));
+        }
+    }
 
 
     /*
@@ -51,7 +69,9 @@ public class UnionFind {
     public UnionFind(int N) {
         this.parent = new int[N];
         for (int i = 0; i < N; i++) {
-            parent[i] = i;
+
+            //only -1 can make it possible for
+            parent[i] = -1;
         }
     }
 
@@ -79,14 +99,7 @@ public class UnionFind {
      * @return the size of the set containing p
      */
     public int sizeOf(int p) {
-        int count = 0;
-        for(int i=0;i<this.parent.length;i++)
-        {
-
-        }
-
-
-        return 0;
+        return  -find(p);
     }
 
 
@@ -99,18 +112,42 @@ public class UnionFind {
      * @return the root of the group p belongs to.
      */
     public int find(int p) {
-
             validate(p);
-            int root = p;
-            while (root != parent[root])
-                root = parent[root];
-            while (p != root) {
-                int newp = parent[p];
-                parent[p] = root;
-                p = newp;
-            }
-            return root;
 
+            int cur = p;
+            int Val = parent(p);
+
+            //if the Val <0, then p is the actual root;
+            if(Val<0)
+            {
+                return p;
+            }
+
+            //find the root
+            while(Val>=0)
+            {
+                Val = parent(p);
+                if(parent(Val)<0)
+                {
+                   break;
+                }else
+                {
+                    p = Val;
+                }
+            }
+
+            //change the path to root
+            while(Val>=0)
+            {
+                Val = parent(p);
+                if(parent(Val)<0)
+                {
+                    break;
+                }else
+                {
+                    p = Val;
+                }
+            }
     }
 
 
@@ -142,9 +179,21 @@ public class UnionFind {
      * @throws IllegalArgumentException if p or q is not a valid index.
      */
     public void union(int p, int q) {
+        if(isSameGroup(p,q)) return;
 
+        int rootP = find(p);
+        int rootQ = find(q);
 
+        // make smaller root point to larger one
+        if (sizeOf(p) <= sizeOf(q)) {
 
+            parent[rootP] = rootQ;
+
+        }
+        else {
+            parent[rootQ] = rootP;
+
+        }
     }
 
 
