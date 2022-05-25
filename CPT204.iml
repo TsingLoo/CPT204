@@ -46,6 +46,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lab12/HAMap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab12/HASet" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab12/LectureQuiz" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab13" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

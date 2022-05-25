@@ -32,23 +32,18 @@ public class UnionFind {
     /*
      ***** HELPER METHODS START *****
      */
-    private void compressHelper(int p,int root){
-        if(parent[p]<0)
-            return;
-        else
-        {
-            compressHelper(parent(p),root);
+    private void compressionHelper(int p,int root){
+        if(parent[p]<0){}
+        else{
+            compressionHelper(parent[p],root);
             parent[p]=root;
         }
     }
-
     private int findHelper(int p ){
-        if(parent[p]<0)
-        {
+        if(parent[p]<0){
             return p;
-        }else
-        {
-            return findHelper(parent(p));
+        }else{
+            return findHelper(parent[p]);
         }
     }
 
@@ -86,7 +81,7 @@ public class UnionFind {
     public void validate(int p) {
         int n = parent.length;
         if (p < 0 || p >= n) {
-            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n - 1));
+            throw new IllegalArgumentException();
         }
     }
 
@@ -112,42 +107,52 @@ public class UnionFind {
      * @return the root of the group p belongs to.
      */
     public int find(int p) {
-            validate(p);
 
-            int cur = p;
-            int Val = parent(p);
+        validate(p);
+        int root = p;
+        //int cur = p;
 
-            //if the Val <0, then p is the actual root;
-            if(Val<0)
+
+        //System.out.println("Jump out of" + p);
+        if(parent(root)<0)
+        {
+            System.out.println("Jump out of" + p+ "root is" + root);
+            return  root;
+            //ystem.out.println("Jump out of" + root);
+        }
+        //System.out.println(parent(root));
+        while(parent(root)>=0)
+        {
+
+
+            root = parent(root);
+            if(parent(parent(root))<0)
             {
-                return p;
+                break;
             }
+        }
 
-            //find the root
-            while(Val>=0)
-            {
-                Val = parent(p);
-                if(parent(Val)<0)
-                {
-                   break;
-                }else
-                {
-                    p = Val;
-                }
-            }
+        System.out.println("Jump out of" + p);
 
-            //change the path to root
-            while(Val>=0)
+        int rootIndex = root;
+
+        while(parent(p)>=0)
+        {
+            //System.out.print(root);
+            p = parent(p);
+            parent[p] = rootIndex;
+            if(parent(parent(root))<0)
             {
-                Val = parent(p);
-                if(parent(Val)<0)
-                {
-                    break;
-                }else
-                {
-                    p = Val;
-                }
+                break;
             }
+        }
+
+
+        //System.out.println(root);
+
+
+
+        return  root;
     }
 
 
@@ -179,20 +184,14 @@ public class UnionFind {
      * @throws IllegalArgumentException if p or q is not a valid index.
      */
     public void union(int p, int q) {
-        if(isSameGroup(p,q)) return;
-
-        int rootP = find(p);
-        int rootQ = find(q);
-
-        // make smaller root point to larger one
-        if (sizeOf(p) <= sizeOf(q)) {
-
-            parent[rootP] = rootQ;
-
-        }
-        else {
-            parent[rootQ] = rootP;
-
+        if (!isSameGroup(p, q)) {
+            if (sizeOf(p) > sizeOf(q)) {
+                parent[find(p)] -= sizeOf(q);
+                parent[find(q)] = find(p);
+            } else {
+                parent[find(q)] -= sizeOf(p);
+                parent[find(p)] = find(q);
+            }
         }
     }
 
@@ -200,6 +199,7 @@ public class UnionFind {
     public static void main(String[] args) {
         UnionFind uf = new UnionFind(4);
         uf.union(1, 0);
+        System.out.println("TIME TO 3,2");
         uf.union(3, 2);
         uf.union(3, 1);
         uf.printParent();
