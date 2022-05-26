@@ -129,6 +129,32 @@ public class LLDeque<T> {
 		return p.item;
     }
 
+    public void addN(T item, int index, int n) {
+        if(size == 0 || index < 0  || index >=size)
+        {
+           return;
+        }
+
+        Node p = sentinel.next;
+        while(index>0)
+        {
+            p = p.next;
+            index -=1;
+        }
+
+        Node tempPrev = p.prev;
+        Node tempNext = p.next;
+
+        for(int i=0;i<n;i++)
+        {
+            p.next = new Node(p,item,tempNext);
+            p = p.next;
+            tempNext = p.next;
+        }
+
+
+    }
+
 
     // EXERCISE 5.1 ADD TO BACK
 

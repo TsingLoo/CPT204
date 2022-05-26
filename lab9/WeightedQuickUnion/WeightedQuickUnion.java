@@ -32,8 +32,15 @@ public class WeightedQuickUnion {
 
     // Add your own helper methods here
 	// INCLUDE your helper methods in your submission !
-	
-	
+
+    private int find(int p) {
+        validate(p);
+        int root = p;
+        while (parent(root) > -1) {
+            root = parent(root);
+        }
+        return root;
+    }
 	
 
     /*
@@ -83,12 +90,7 @@ public class WeightedQuickUnion {
      * @return the size of the set containing p
      */
     public int sizeOf(int p) {
-        if(parent[p]<0){
-            int result = -parent[p];
-            return result;
-        }else{
-            return sizeOf(parent[p]);
-        }
+        return -parent(find(p));
     }
 	
 	
@@ -103,17 +105,7 @@ public class WeightedQuickUnion {
      * @throws IllegalArgumentException if p or q is not a valid index.
      */
     public boolean isSameGroup(int p, int q) {
-        validate(p);
-        validate(q);
-        if(parent[p]>=0)
-        {
-            return isSameGroup(parent[p],q);
-        }else if(parent[q]>=0)
-        {
-            return isSameGroup(p,parent[q]);
-        }else{
-            return p==q;
-        }
+        return find(p) == find(q);
     }
 
 
@@ -127,27 +119,15 @@ public class WeightedQuickUnion {
      * @throws IllegalArgumentException if p or q is not a valid index.
      */
     public void union(int p, int q) {
-        validate(p);
-        validate(q);
-        if(isSameGroup(p,q))
-        {
-            return;
+        if (!isSameGroup(p, q)) {
+            if (sizeOf(p) > sizeOf(q)) {
+                parent[find(p)] -= sizeOf(q);
+                parent[find(q)] = find(p);
+            } else {
+                parent[find(q)] -= sizeOf(p);
+                parent[find(p)] = find(q);
+            }
         }
-        if(parent[p]>=0)
-        {
-            union(parent[p],q);
-        }else if(parent[q]>=0)
-        {
-            union(p,parent[q]);
-        }else if (parent[p]<parent[q])
-        {
-            parent[p]=parent[q]+parent[p];
-            parent[q]=p;
-        }else{
-            parent[q]=parent[q]+parent[p];
-            parent[p]=q;
-        }
-		
 		
     }
 

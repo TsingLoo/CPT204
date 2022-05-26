@@ -20,7 +20,10 @@ public class LLDequeTest {
 	//	add more test cases
 	
 	
-	
+    public void AddNtest()
+    {
+
+    }
 
     @Test
     public void testASSIGNMENT() {

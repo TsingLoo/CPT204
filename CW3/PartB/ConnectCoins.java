@@ -1,3 +1,5 @@
+
+import javax.sound.sampled.Line;
 import java.util.ArrayList;       // optional
 
 public class ConnectCoins {
@@ -23,54 +25,84 @@ public class ConnectCoins {
     // Add your own helper methods here
     // INCLUDE your helper methods in your submission !
 
-
-
-    /*
-     ***** HELPER METHODS END *****
-     */
-
-
-    // COURSEWORK 3 PART B.1 Connect Coin CONSTRUCTOR
-
-    /**
-     * Initializes the instance variable including a UnionFind data structure.
-     * @param ccMatrix is s a 2-D boolean array of true (T) and false (F) values
-     *                 to represent the 2-D space where A T in a coordinate indicates that there is a coin
-     *                 at that position in the 2-D space, while an F indicates an empty space
-     */
     public ConnectCoins(boolean[][] ccMatrix) {
-        uf1 = null;
-        uf2 = null;
-        this.ccMatrix = null;
-        row = 0;
-        column = 0;
+        int num = ccMatrix.length*ccMatrix[0].length;
+        uf1 = new UnionFind(num);
+        for (int n=0;n<ccMatrix.length;n++){
+            for(int m=0;m<ccMatrix[n].length;m++){
+                if(ccMatrix[n][m]==true){
+                    if(n>0&&ccMatrix[n-1][m]==true){
+                        uf1.union(n*ccMatrix[0].length+m, (n-1)*ccMatrix[0].length+m);
+                    }
+                    if(m>0&&ccMatrix[n][m-1]==true){
+                        uf1.union(n*ccMatrix[0].length+m, n*ccMatrix[0].length+m-1);
+                    }
+                    if(n<ccMatrix.length-1&&ccMatrix[n+1][m]==true){
+                        uf1.union(n*ccMatrix[0].length+m, (n+1)*ccMatrix[0].length+m);
+                    }
+                    if(m<ccMatrix[0].length-1&&ccMatrix[n][m+1]==true){
+                        uf1.union(n*ccMatrix[0].length+m, n*ccMatrix[0].length+m+1);
+                    }
+                }
+            }
+        }
+        this.ccMatrix = ccMatrix;
+        int maxCoin = 0;
+
+        int temp_max = 0;
+        int r = 0;
+        int c = 0;
+        for (int n=0;n<ccMatrix.length;n++){
+            for(int m=0;m<ccMatrix[n].length;m++){
+                ArrayList<Integer> a = new ArrayList<Integer>();
+                if(ccMatrix[n][m]==false){
+                    temp_max = 0;
+                    if(n>0&&ccMatrix[n-1][m]==true){
+                        a.add((n-1)*ccMatrix[0].length+m);
+                    }
+                    if(m>0&&ccMatrix[n][m-1]==true){
+                        a.add(n*ccMatrix[0].length+m-1);
+                    }
+                    if(n<ccMatrix.length-1&&ccMatrix[n+1][m]==true){
+                        a.add((n+1)*ccMatrix[0].length+m);
+                    }
+                    if(m<ccMatrix[0].length-1&&ccMatrix[n][m+1]==true){
+                        a.add(n*ccMatrix[0].length+m+1);
+                    }
+                    for(int i=0;i<a.size();i++){
+                        for(int i2=i+1;i2<a.size();i2++){
+                            if(uf1.isSameGroup(a.get(i),a.get(i2))){
+                                a.remove(i2);
+                                i2--;
+                            }
+                        }
+                    }
+                    for(int i=0;i<a.size();i++){
+                        temp_max += uf1.sizeOf(a.get(i));
+                    }
+                    if(temp_max> maxCoin){
+                        maxCoin = temp_max;
+                        r = n;
+                        c = m;
+                    }
+                }
+            }
+        }
+        row = r;
+        column = c;
+        uf2 = new UnionFind(1000000);
+        uf2.union(0,  maxCoin);
     }
-
-    // COURSEWORK 3 PART B.2 Connect Coins PLACE MAX CONNECTED COINS
-
-    /**
-     * @return a 2-element integer array that represents the coordinate in [row, column],
-     * so that a coin that is placed in that coordinate will give the maximum number of newly connected coins.
-     * If there are multiple possible such placements, return the left-and-topmost coordinate.
-     */
 
     public int[] placeMaxConnCoins() {
-
-
-        return null;
+        int[] position = {row, column};
+        return position;
     }
 
-
-    // COURSEWORK 3 PART B.3 Connect Coins MAX CONNECTED COINS
-
-    /**
-     * @return the maximum number of newly connected coins after placing a new coin.
-     */
 
     public int maxConnCoins() {
-
-
-        return 0;
+        return uf2.find(0)+1;
     }
-
 }
+
+

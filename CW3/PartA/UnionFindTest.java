@@ -9,7 +9,17 @@ public class UnionFindTest {
         uf.union(1, 0);
         assertTrue(uf.isSameGroup(1, 0));
         assertEquals(2, uf.sizeOf(1));
+
+        System.out.println(uf.find(1));
+        System.out.println(uf.find(0));
+
+        System.out.println((uf.parent(1)));
+
+
         assertEquals(0, uf.parent(1));
+
+
+
         assertEquals(-2, uf.parent(0));
         uf.union(3, 2);
         assertFalse(uf.isSameGroup(3, 1));

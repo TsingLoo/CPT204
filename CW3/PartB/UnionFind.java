@@ -94,7 +94,7 @@ public class UnionFind {
      * @return the size of the set containing p
      */
     public int sizeOf(int p) {
-        return  -find(p);
+        return -parent(find(p));
     }
 
 
@@ -106,53 +106,22 @@ public class UnionFind {
      * @param p is a valid element
      * @return the root of the group p belongs to.
      */
-    public int find(int p) {
-
+    public int  find(int p) {
         validate(p);
         int root = p;
-        //int cur = p;
-
-
-        //System.out.println("Jump out of" + p);
-        if(parent(root)<0)
-        {
-            System.out.println("Jump out of" + p+ "root is" + root);
-            return  root;
-            //ystem.out.println("Jump out of" + root);
-        }
-        //System.out.println(parent(root));
-        while(parent(root)>=0)
-        {
-
-
+        while (parent(root) > -1) {
             root = parent(root);
-            if(parent(parent(root))<0)
-            {
-                break;
-            }
         }
-
-        System.out.println("Jump out of" + p);
 
         int rootIndex = root;
 
-        while(parent(p)>=0)
+        while(parent(p)>-1)
         {
-            //System.out.print(root);
-            p = parent(p);
             parent[p] = rootIndex;
-            if(parent(parent(root))<0)
-            {
-                break;
-            }
+            p = parent(p);
         }
 
-
-        //System.out.println(root);
-
-
-
-        return  root;
+        return rootIndex;
     }
 
 
@@ -199,7 +168,7 @@ public class UnionFind {
     public static void main(String[] args) {
         UnionFind uf = new UnionFind(4);
         uf.union(1, 0);
-        System.out.println("TIME TO 3,2");
+        //System.out.println("TIME TO 3,2");
         uf.union(3, 2);
         uf.union(3, 1);
         uf.printParent();
