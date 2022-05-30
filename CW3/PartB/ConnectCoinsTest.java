@@ -8,12 +8,19 @@ public class ConnectCoinsTest {
         boolean[][] ccMatrix = {{true,  false, true,  true},
                                 {true,  false, true,  false},
                                 {true,  false, true,  false},
-                                {false, true,  false, true},
+                                {false, false,  false, true},
                                 {false, true,  false, true},
                                 {true,  false, false, true}};
         ConnectCoins cc = new ConnectCoins(ccMatrix);
         int scores = 10;
-        assertEquals(scores, cc.maxConnCoins());
+
+        for(int i=0;i<cc.placeMaxConnCoins().length;i++)
+        {
+            System.out.println(cc.placeMaxConnCoins()[i]);
+        }
+
+        assertEquals(8, cc.maxConnCoins());
+
     }
 
 }
